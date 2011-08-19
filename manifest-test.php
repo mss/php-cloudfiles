@@ -1,12 +1,11 @@
 <?php
-set_include_path(implode(PATH_SEPARATOR, array(
-  './lib',
-  get_include_path()
-)));
+chdir(dirname(__FILE__));
 require_once('cloudfiles.php');
 
-$user="";
-$key="";
+$conf = parse_ini_file("manifest-test.ini", true);
+
+$user  = $conf['global']['user'];
+$key   = $conf['global']['key'];
 $realm = UK_AUTHURL;
 $container = "test";
 
