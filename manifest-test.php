@@ -20,16 +20,27 @@ $auth->authenticate();
 $conn = new CF_Connection($auth);
 $conn->setDebug(1);
 
-$c = $conn->create_container($container);
+$c = $conn->create_container(
+    $conf['test']['container']
+);
+$c->make_public();
 
-$o = $c->create_object("test/data");
-$o->write("foo", 3);
+$o = $c->create_object($conf['test']['data']);
+$o->write("foo\n", 4);
 
-$o = $c->create_object("test/link");
-$o->headers  = array('Content-Disposition' => 'attachment');
-$o->manifest = $container . "/test/data";
-$o->content_type = "test/plain";
+$o = $c->create_object($conf['test']['link']);
+$o->headers  = array(
+    'Content-Disposition' => 'attachment',
+);
+$o->metadata = array(
+    'Test' => 'true',
+);
+$o->manifest = $container . "/" . $conf['test']['data'];
+$o->content_type = "text/plain";
 $o->write(".", 1);
 
-echo("-------------------------\n" . $o->public_uri() . "\n");
+echo("\n-------------------------\n\n\n" .
+     $o->public_uri() .
+    "\n\n\n-------------------------\n"
+);
 
