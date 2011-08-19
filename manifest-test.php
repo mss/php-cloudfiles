@@ -48,7 +48,7 @@ $o->headers  = array(
 $o->metadata = array(
     'Link' => 'test',
 );
-$o->manifest = $container . "/" . $conf['test']['data'];
+$o->manifest = $conf['test']['container'] . "/" . $conf['test']['data'];
 $o->content_type = "text/plain";
 $o->write(".", 1);
 
