@@ -30,7 +30,7 @@ $o->headers  = array(
     'Content-Disposition' => 'inline',
 );
 $o->metadata = array(
-    'Test' => 'data',
+    'Data' => 'test',
 );
 $o->write("foo\n", 4);
 
@@ -39,7 +39,7 @@ $o->headers  = array(
     'Content-Disposition' => 'attachment',
 );
 $o->metadata = array(
-    'Test' => 'link',
+    'Link' => 'test',
 );
 $o->manifest = $container . "/" . $conf['test']['data'];
 $o->content_type = "text/plain";
