@@ -26,6 +26,12 @@ $c = $conn->create_container(
 $c->make_public();
 
 $o = $c->create_object($conf['test']['data']);
+$o->headers  = array(
+    'Content-Disposition' => 'inline',
+);
+$o->metadata = array(
+    'Test' => 'data',
+);
 $o->write("foo\n", 4);
 
 $o = $c->create_object($conf['test']['link']);
@@ -33,7 +39,7 @@ $o->headers  = array(
     'Content-Disposition' => 'attachment',
 );
 $o->metadata = array(
-    'Test' => 'true',
+    'Test' => 'link',
 );
 $o->manifest = $container . "/" . $conf['test']['data'];
 $o->content_type = "text/plain";
