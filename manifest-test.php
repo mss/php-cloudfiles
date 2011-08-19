@@ -39,6 +39,9 @@ $o->manifest = $container . "/" . $conf['test']['data'];
 $o->content_type = "text/plain";
 $o->write(".", 1);
 
+$o = $c->create_object($conf['test']['data']);
+$o = $c->create_object($conf['test']['link']);
+
 echo("\n-------------------------\n\n\n" .
      $o->public_uri() .
     "\n\n\n-------------------------\n"
